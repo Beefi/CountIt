@@ -4,86 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".LogMealActivity"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_appName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CountIt"
+        android:text="Log Meal"
         android:textAlignment="center"
         android:textSize="24sp" />
 
-    <ImageView
-        android:id="@+id/iv_dp"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:adjustViewBounds="true"
-        android:contentDescription="Profile Picture"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/round_image"
-        android:src="@drawable/user_blank"
-        />
-
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_calorieIntakeTodayLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Johnathan R. Wheelo"
+        android:text="Today's Calorie Intake:"
         android:textAlignment="center"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="100dp"/>
 
     <TextView
-        android:id="@+id/tv_weight"
+        android:id="@+id/tv_calorieIntakeToday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Weight: 300lbs"
+        android:text="1220 cal"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_setWeight"
-        android:layout_width="250dp"
+    <TextView
+        android:id="@+id/tv_calorieIntakeWeekLabel"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set New Weight"
+        android:text="Week's Calorie Intake:"
         android:textAlignment="center"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        android:layout_marginTop="60dp"
-        android:layout_gravity="center"
-        />
+        android:textSize="24sp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/tv_calorieIntakeWeek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3660 cal"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_todayMeals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today's Meals:"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_marginTop="30dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_todayMeals"
+        android:layout_width="300sp"
+        android:layout_height="200sp"
+        android:layout_gravity="center" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_logMeal"
-        android:layout_width="250dp"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:text="Log Meal"
+        android:text="Log"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_logActivity"
-        android:layout_width="250dp"
+        android:id="@+id/btn_cancelLogMeal"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:text="Log Activity"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        android:layout_gravity="center"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_setGoals"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Set Goals"
+        android:text="Cancel"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textAllCaps="false"

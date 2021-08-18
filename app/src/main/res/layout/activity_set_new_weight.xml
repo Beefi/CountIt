@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Set New Weight"
         android:textAlignment="center"
-        android:textSize="24dp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/tv_currentWeightLabel"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Current Weight:"
         android:textAlignment="center"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:layout_marginTop="100dp"/>
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:text="300 lbs"
         android:textAlignment="center"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="New Weight:"
         android:textAlignment="center"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:layout_marginTop="100dp"/>
 
     <EditText
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:text="Cancel"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_gravity="center"
         />
