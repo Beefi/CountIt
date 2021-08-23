@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "124861227881",
+    "project_id": "countit-4bfd0",
+    "storage_bucket": "countit-4bfd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124861227881:android:1df79b0d318bf3fbd193f8",
+        "android_client_info": {
+          "package_name": "ph.edu.ph.mobdeve.s18.baliog.miguel.countit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124861227881-o5s9hjgvi1qbpq7lnvqmh6jeda1jcj9e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGOFzPLUt9XG5keMrTq3We1SOVDzZnSFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124861227881-o5s9hjgvi1qbpq7lnvqmh6jeda1jcj9e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
