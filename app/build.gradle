@@ -39,6 +39,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
     implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-analytics'
 
     testImplementation 'junit:junit:4.+'

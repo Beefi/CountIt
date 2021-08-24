@@ -4,17 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreenActivity"
+    tools:context=".RegisterActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_appName"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Count-It"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:layout_marginTop="200dp"/>
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:hint="Email"
+        android:singleLine="true"
+        android:layout_marginTop="200dp" />
+
+    <EditText
+        android:id="@+id/et_screenName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:hint="Full Name"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/et_username"
@@ -23,8 +33,7 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal"
         android:hint="Username"
-        android:singleLine="true"
-        android:layout_marginTop="40dp" />
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/et_password"
@@ -36,17 +45,15 @@
         android:singleLine="true"
         android:inputType="textPassword"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login"
-        android:layout_width="250sp"
+    <EditText
+        android:id="@+id/et_confirmPassword"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Log-in"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textAllCaps="false"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        />
+        android:gravity="center_horizontal"
+        android:hint="Confirm Password"
+        android:singleLine="true"
+        android:inputType="textPassword"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
@@ -57,6 +64,19 @@
         android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:text="Log-in"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        />
+
+
 
 </LinearLayout>
