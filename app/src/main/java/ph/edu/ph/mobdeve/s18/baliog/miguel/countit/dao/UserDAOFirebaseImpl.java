@@ -46,9 +46,7 @@ public class UserDAOFirebaseImpl implements UserDAO {
     }
 
     @Override
-    public ArrayList<User> getUsers() {
-        ArrayList<User> result = new ArrayList<>();
-
+    public void getUsers(ArrayList<User> userArrayList) {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -57,18 +55,18 @@ public class UserDAOFirebaseImpl implements UserDAO {
                     user.setId(data.child("id").getValue(Integer.class));
                     user.setName(data.child("name").getValue(String.class));
                     user.setEmail(data.child("email").getValue(String.class));
+                    user.setUsername(data.child("username").getValue(String.class));
+                    user.setPassword(data.child("password").getValue(String.class));
+                    user.setWeight(data.child("weight").getValue(Integer.class));
 
-                    result.add(user);
+                    userArrayList.add(user);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-
             }
         });
-
-        return result;
     }
 
     @Override

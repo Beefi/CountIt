@@ -7,6 +7,8 @@ import android.text.TextWatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.dao.UserDAO;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.dao.UserDAOFirebaseImpl;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.databinding.ActivityRegisterBinding;
@@ -33,6 +35,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         binding.btnRegister.setEnabled(false);
 
+        ArrayList<User> userArrayList = new ArrayList<>();
+
+        userDAO.getUsers(userArrayList);
+
         binding.btnLogin.setOnClickListener(v -> {
             Intent intent2 = new Intent(this, SplashScreenActivity.class);
             String username = binding.etUsername.getText().toString();
@@ -50,9 +56,13 @@ public class RegisterActivity extends AppCompatActivity {
             user.setPassword(binding.etPassword.getText().toString());
             user.setUsername(binding.etUsername.getText().toString());
             user.setWeight(0);
-            user.setId(1);
+
+            int numUsers = userArrayList.size();;
+
+            user.setId(numUsers+1);
 
             userDAO.addUser(user);
+
             finishAndRemoveTask();
         });
 
