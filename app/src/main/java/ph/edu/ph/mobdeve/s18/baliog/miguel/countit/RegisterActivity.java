@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,13 +58,19 @@ public class RegisterActivity extends AppCompatActivity {
             user.setUsername(binding.etUsername.getText().toString());
             user.setWeight(0);
 
+            String username = user.getUsername();
+            String email = user.getEmail();
+
             int numUsers = userArrayList.size();;
 
             user.setId(numUsers+1);
 
-            userDAO.addUser(user);
-
-            finishAndRemoveTask();
+            if (verifyUsername(username, userArrayList)) {
+                if (verifyEmail(email, userArrayList)) {
+                    userDAO.addUser(user);
+                    finishAndRemoveTask();
+                }
+            }
         });
 
         binding.etConfirmPassword.addTextChangedListener(new TextWatcher() {
@@ -91,5 +98,33 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean verifyUsername(String username, ArrayList<User> userArrayList) {
+        String toBeChecked = "";
+        for (int x = 0; x < userArrayList.size(); x++) {
+            toBeChecked = userArrayList.get(x).getUsername();
+            if(username.equals(toBeChecked)){
+                Toast.makeText(RegisterActivity.this, "Username already taken!", Toast.LENGTH_SHORT).show();
+
+                return false; // Not Verified
+            }
+        }
+
+        return true; // Verified
+    }
+
+    private boolean verifyEmail(String email, ArrayList<User> userArrayList) {
+        String toBeChecked = "";
+        for (int x = 0; x < userArrayList.size(); x++) {
+            toBeChecked = userArrayList.get(x).getEmail();
+            if(email.equals(toBeChecked)){
+                Toast.makeText(RegisterActivity.this, "Email already taken!", Toast.LENGTH_SHORT).show();
+
+                return false; // Not Verified
+            }
+        }
+
+        return true; // Verified
     }
 }

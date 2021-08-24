@@ -70,8 +70,7 @@ public class UserDAOFirebaseImpl implements UserDAO {
     }
 
     @Override
-    public User getUser(int username) {
-        return null;
+    public void getUser(User user) {
     }
 
     @Override
