@@ -16,6 +16,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        init();
+    }
+
+    private void init() {
         Intent intent2 = getIntent();
         binding.etUsername.setText(intent2.getStringExtra("username"));
         binding.etPassword.setText(intent2.getStringExtra("password"));
@@ -27,7 +31,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             intent.putExtra("username", username);
             intent.putExtra("password", password);
             startActivity(intent);
-            finishAndRemoveTask();
         });
     }
 }

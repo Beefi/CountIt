@@ -26,6 +26,7 @@ public class UserDAOFirebaseImpl implements UserDAO {
     public UserDAOFirebaseImpl(Context context0) {
 
     }
+
     @Override
     public long addUser(User user) {
         final long[] result = {-1};
