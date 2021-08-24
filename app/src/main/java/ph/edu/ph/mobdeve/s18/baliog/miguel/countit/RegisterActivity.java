@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
             String username = user.getUsername();
             String email = user.getEmail();
 
-            int numUsers = userArrayList.size();;
+            int numUsers = userArrayList.size();
 
             user.setId(numUsers+1);
 
@@ -89,11 +88,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = binding.etPassword.getText().toString();
                 String confirmPassword = binding.etConfirmPassword.getText().toString();
                 if (editable.length() > 0 && password.length() > 0) {
-                    if(password.equals(confirmPassword)){
+                    if (password.equals(confirmPassword))
                         binding.btnRegister.setEnabled(true);
-                    }
                     else {
                         binding.btnRegister.setEnabled(false);
+                        binding.etConfirmPassword.setError("Password does not match.");
                     }
                 }
             }
@@ -101,12 +100,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean verifyUsername(String username, ArrayList<User> userArrayList) {
-        String toBeChecked = "";
+        String toBeChecked;
         for (int x = 0; x < userArrayList.size(); x++) {
             toBeChecked = userArrayList.get(x).getUsername();
             if(username.equals(toBeChecked)){
-                Toast.makeText(RegisterActivity.this, "Username already taken!", Toast.LENGTH_SHORT).show();
-
+                binding.etUsername.setError("Username already taken!");
                 return false; // Not Verified
             }
         }
@@ -115,12 +113,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean verifyEmail(String email, ArrayList<User> userArrayList) {
-        String toBeChecked = "";
+        String toBeChecked;
         for (int x = 0; x < userArrayList.size(); x++) {
             toBeChecked = userArrayList.get(x).getEmail();
             if(email.equals(toBeChecked)){
-                Toast.makeText(RegisterActivity.this, "Email already taken!", Toast.LENGTH_SHORT).show();
-
+                binding.etEmail.setError("Username already taken!");
                 return false; // Not Verified
             }
         }
