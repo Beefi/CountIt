@@ -63,7 +63,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 intent.putExtra("userNum", userNum);
 
                 startActivity(intent);
-                finishAndRemoveTask();
             }
             else {
                 binding.etPassword.setError("Username cannot be found / Password does not match");

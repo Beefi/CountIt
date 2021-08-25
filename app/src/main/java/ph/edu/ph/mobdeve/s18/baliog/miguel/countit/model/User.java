@@ -3,6 +3,7 @@ package ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private String uid = "";
     private String username = "";
     private String password = "";
     private String name = "";
@@ -21,6 +22,14 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
         this.weight = weight;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getUsername() {

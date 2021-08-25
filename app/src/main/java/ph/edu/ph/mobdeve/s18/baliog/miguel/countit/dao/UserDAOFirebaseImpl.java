@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 
-public class UserDAOFirebaseImpl implements UserDAO {
+public class UserDAOFirebaseImpl implements UserDAO{
 
     private final String PATH = "users";
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -52,6 +52,8 @@ public class UserDAOFirebaseImpl implements UserDAO {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot data: snapshot.getChildren()) {
                     User user = new User();
+                    String uid = data.getKey();
+                    user.setUid(uid);
                     user.setId(data.child("id").getValue(Integer.class));
                     user.setName(data.child("name").getValue(String.class));
                     user.setEmail(data.child("email").getValue(String.class));
@@ -74,8 +76,15 @@ public class UserDAOFirebaseImpl implements UserDAO {
     }
 
     @Override
-    public int updateUser(User user) {
-        return 0;
+    public int updateUser(String uID, String toUpdate, String newValue) {
+        if (toUpdate.equals("weight")) {
+            database.getReference().child(PATH).child(uID).child(toUpdate).setValue(Integer.parseInt(newValue));
+        }
+        else {
+            database.getReference().child(PATH).child(uID).child(toUpdate).setValue(newValue);
+        }
+
+        return 1;
     }
 
     @Override

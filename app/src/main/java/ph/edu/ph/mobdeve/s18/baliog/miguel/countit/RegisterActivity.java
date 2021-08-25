@@ -67,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (verifyEmail(email, userArrayList)) {
                 if (verifyUsername(username, userArrayList)) {
                     userDAO.addUser(user);
+
                     finishAndRemoveTask();
                 }
             }
