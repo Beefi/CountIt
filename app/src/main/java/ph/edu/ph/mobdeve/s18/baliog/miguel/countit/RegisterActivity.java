@@ -30,14 +30,14 @@ public class RegisterActivity extends AppCompatActivity {
     private void init() {
         UserDAO userDAO = new UserDAOFirebaseImpl(getApplicationContext());
         Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("bundle");
+
         binding.etUsername.setText(intent.getStringExtra("username"));
         binding.etPassword.setText(intent.getStringExtra("password"));
 
         binding.btnRegister.setEnabled(false);
 
-        ArrayList<User> userArrayList = new ArrayList<>();
-
-        userDAO.getUsers(userArrayList);
+        ArrayList<User> userArrayList = (ArrayList<User>) bundle.getSerializable("userList");
 
         binding.btnLogin.setOnClickListener(v -> {
             Intent intent2 = new Intent(this, SplashScreenActivity.class);
@@ -64,8 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             user.setId(numUsers+1);
 
-            if (verifyUsername(username, userArrayList)) {
-                if (verifyEmail(email, userArrayList)) {
+            if (verifyEmail(email, userArrayList)) {
+                if (verifyUsername(username, userArrayList)) {
                     userDAO.addUser(user);
                     finishAndRemoveTask();
                 }
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
         for (int x = 0; x < userArrayList.size(); x++) {
             toBeChecked = userArrayList.get(x).getEmail();
             if(email.equals(toBeChecked)){
-                binding.etEmail.setError("Username already taken!");
+                binding.etEmail.setError("Email already taken!");
                 return false; // Not Verified
             }
         }
