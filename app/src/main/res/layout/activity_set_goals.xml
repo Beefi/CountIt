@@ -4,64 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LogMealActivity"
+    tools:context=".SetGoalsActivity"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_appName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Log Meal"
+        android:text="Set Goals"
         android:textAlignment="center"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/tv_calorieIntakeTodayLabel"
+        android:id="@+id/tv_currentGoalLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Today's Calorie Intake:"
+        android:text="Current Goal:"
         android:textAlignment="center"
         android:textSize="24sp"
         android:layout_marginTop="100dp"/>
 
     <TextView
-        android:id="@+id/tv_calorieIntakeToday"
+        android:id="@+id/tv_currentGoalWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1220 cal"
+        android:text="150 lbs"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/tv_todayMeals"
+        android:id="@+id/tv_recommendedCaloriesLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Today's Meals:"
+        android:text="Recommended Calorie Intake:"
         android:textAlignment="center"
         android:textSize="24sp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="40dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_todayMeals"
-        android:layout_width="300sp"
-        android:layout_height="200sp"
-        android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/tv_recommendedCalories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2000 cal"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_logMeal"
+        android:id="@+id/btn_setWeightGoal"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:text="Log"
+        android:text="Set Weight Goal"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_finishLogMeal"
+        android:id="@+id/btn_finishSetGoal"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:text="Finish"
@@ -70,5 +73,6 @@
         android:textAllCaps="false"
         android:layout_gravity="center"
         />
+
 
 </LinearLayout>

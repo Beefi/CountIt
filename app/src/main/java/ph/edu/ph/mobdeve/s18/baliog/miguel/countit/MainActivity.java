@@ -13,6 +13,7 @@ import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 public class MainActivity extends AppCompatActivity {
 
     public ActivityMainBinding binding;
+    public int NEW_WEIGHT_ACTIVITY = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         binding.tvWeight.setText(new StringBuilder().append(curUser.getWeight()).append(" lbs").toString());
 
         binding.btnSetWeight.setOnClickListener(v -> {
-            int NEW_WEIGHT_ACTIVITY = 100;
             Intent intentSetWeight = new Intent(this, SetNewWeightActivity.class);
             Bundle bundleSetWeight = new Bundle();
 
@@ -54,13 +54,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.btnLogActivity.setOnClickListener(v -> {
-            // TO DO
             Intent intentLogActivity = new Intent(this, LogMealActivity.class);
+            intentLogActivity.putExtra("data", curUser);
+
+            startActivity(intentLogActivity);
         });
 
         binding.btnSetGoals.setOnClickListener(v -> {
             // TO DO
             Intent intentSetGoals = new Intent(this, SetNewWeightActivity.class);
+            intentSetGoals.putExtra("data", curUser);
+
+            startActivity(intentSetGoals);
         });
     }
 
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // NEW_WEIGHT_ACTIVITY
-        if (requestCode == 100)   {
+        if (requestCode == NEW_WEIGHT_ACTIVITY)   {
             if (resultCode == RESULT_OK) {
                 binding.tvWeight.setText(new StringBuilder().append(data.getStringExtra("weight")).append(" lbs").toString());
             }

@@ -4,23 +4,23 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.databinding.ActivityLogMealBinding;
+import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.databinding.ActivitySetGoalsBinding;
 
-public class LogMealActivity extends AppCompatActivity {
+public class SetGoalsActivity extends AppCompatActivity {
 
-    private ActivityLogMealBinding binding;
+    private ActivitySetGoalsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityLogMealBinding.inflate(getLayoutInflater());
+        binding = ActivitySetGoalsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         init();
     }
 
     private void init() {
-        binding.btnFinishLogMeal.setOnClickListener(v -> {
+        binding.btnFinishSetGoal.setOnClickListener(v -> {
             setResult(RESULT_OK);
             finish();
         });
