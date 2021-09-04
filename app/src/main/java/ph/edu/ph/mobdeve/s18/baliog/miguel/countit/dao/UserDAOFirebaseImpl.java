@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Food;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 
 public class UserDAOFirebaseImpl implements UserDAO{
@@ -60,7 +61,7 @@ public class UserDAOFirebaseImpl implements UserDAO{
                     user.setUsername(data.child("username").getValue(String.class));
                     user.setPassword(data.child("password").getValue(String.class));
                     user.setWeight(data.child("weight").getValue(Integer.class));
-                    user.setFoodIntake(data.child("foodIntake").getValue(ArrayList.class));
+                    user.setIntake(data.child("Intake").getValue(ArrayList.class));
 
                     userArrayList.add(user);
                 }
@@ -91,5 +92,23 @@ public class UserDAOFirebaseImpl implements UserDAO{
     @Override
     public int deleteUser(int userid) {
         return 0;
+    }
+
+    @Override
+    public long addFood(String uID, Food food) {
+        final long[] result = {-1};
+        myRef.child(uID).child("intake").child("0").child("foodList").push().setValue(food, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError error, DatabaseReference ref) {
+                if (error != null) {
+                    Log.d("ERROR", "ERROR: " + error.getMessage());
+                }
+                else {
+                    Log.d("SUCCESS", "DATA INSERTED");
+                    result[0] = 1L;
+                }
+            }
+        });
+        return result[0];
     }
 }

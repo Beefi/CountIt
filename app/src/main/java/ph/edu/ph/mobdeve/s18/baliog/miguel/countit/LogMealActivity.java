@@ -1,5 +1,6 @@
 package ph.edu.ph.mobdeve.s18.baliog.miguel.countit;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class LogMealActivity extends AppCompatActivity {
     }
 
     private void init() {
+        Intent intent = getIntent();
+
         foodList = new ArrayList<>();
 
         foodList.add(new Food("URI_TEST", "Margherita Pizza Slice", "Shakey's Pizza", "1 slice", 200, 1));
@@ -36,7 +39,7 @@ public class LogMealActivity extends AppCompatActivity {
         foodList.add(new Food("URI_TEST", "Meatlovers Pizza", "Shakey's Pizza", "1 slice", 300, 5));
         foodList.add(new Food("URI_TEST", "Cheese Pizza", "Shakey's Pizza", "1 pie", 1500, 6));
 
-        foodAdapter = new FoodAdapter(getApplicationContext(), foodList);
+        foodAdapter = new FoodAdapter(getApplicationContext(), foodList, intent);
 
         binding.rvTodayMeals.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 

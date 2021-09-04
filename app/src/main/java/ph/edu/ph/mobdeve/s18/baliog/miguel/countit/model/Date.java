@@ -7,23 +7,23 @@ public class Date implements Serializable {
     private String month;
     private String day;
     private String year;
-    private ArrayList<Food> foodArrayList;
-    private ArrayList<Exercise> exerciseArrayList;
+    private ArrayList<Food> foodList;
+    private ArrayList<Exercise> exerciseList;
 
-    public Date(String month, String day, String year, ArrayList<Food> foodArrayList, ArrayList<Exercise> exerciseArrayList) {
+    public Date(String month, String day, String year, ArrayList<Food> foodList, ArrayList<Exercise> exerciseList) {
         this.month = month;
         this.day = day;
         this.year = year;
-        this.foodArrayList = foodArrayList;
-        this.exerciseArrayList = exerciseArrayList;
+        this.foodList = foodList;
+        this.exerciseList = exerciseList;
     }
 
-    public ArrayList<Exercise> getExerciseArrayList() {
-        return exerciseArrayList;
+    public ArrayList<Exercise> getExerciseList() {
+        return exerciseList;
     }
 
-    public void setExerciseArrayList(ArrayList<Exercise> exerciseArrayList) {
-        this.exerciseArrayList = exerciseArrayList;
+    public void setExerciseList(ArrayList<Exercise> exerciseList) {
+        this.exerciseList = exerciseList;
     }
 
     public String getMonth() {
@@ -50,11 +50,11 @@ public class Date implements Serializable {
         this.year = year;
     }
 
-    public ArrayList<Food> getFoodArrayList() {
-        return foodArrayList;
+    public ArrayList<Food> getFoodList() {
+        return foodList;
     }
 
-    public void setFoodArrayList(ArrayList<Food> foodArrayList) {
-        this.foodArrayList = foodArrayList;
+    public void setFoodList(ArrayList<Food> foodList) {
+        this.foodList = foodList;
     }
 }

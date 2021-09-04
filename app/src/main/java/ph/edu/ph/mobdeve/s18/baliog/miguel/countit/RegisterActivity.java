@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
             int numUsers = userArrayList.size();
 
             user.setId(numUsers+1);
-            user.setFoodIntake(new ArrayList<>());
+            user.setIntake(new ArrayList<>());
 
             ArrayList<Food> foodList = new ArrayList<>();
             foodList.add(new Food());
@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
             ArrayList<Exercise> exerciseList = new ArrayList<>();
             exerciseList.add(new Exercise());
 
-            user.getFoodIntake().add(new Date("", "","", foodList, exerciseList));
+            user.getIntake().add(new Date("", "","", foodList, exerciseList));
 
             if (verifyEmail(email, userArrayList)) {
                 if (verifyUsername(username, userArrayList)) {
