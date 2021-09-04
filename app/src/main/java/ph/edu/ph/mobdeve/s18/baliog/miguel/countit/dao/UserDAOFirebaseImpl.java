@@ -60,6 +60,7 @@ public class UserDAOFirebaseImpl implements UserDAO{
                     user.setUsername(data.child("username").getValue(String.class));
                     user.setPassword(data.child("password").getValue(String.class));
                     user.setWeight(data.child("weight").getValue(Integer.class));
+                    user.setFoodIntake(data.child("foodIntake").getValue(ArrayList.class));
 
                     userArrayList.add(user);
                 }

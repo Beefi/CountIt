@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.dao.UserDAO;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.dao.UserDAOFirebaseImpl;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.databinding.ActivityRegisterBinding;
+import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Date;
+import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Exercise;
+import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Food;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -63,6 +66,15 @@ public class RegisterActivity extends AppCompatActivity {
             int numUsers = userArrayList.size();
 
             user.setId(numUsers+1);
+            user.setFoodIntake(new ArrayList<>());
+
+            ArrayList<Food> foodList = new ArrayList<>();
+            foodList.add(new Food());
+
+            ArrayList<Exercise> exerciseList = new ArrayList<>();
+            exerciseList.add(new Exercise());
+
+            user.getFoodIntake().add(new Date("", "","", foodList, exerciseList));
 
             if (verifyEmail(email, userArrayList)) {
                 if (verifyUsername(username, userArrayList)) {

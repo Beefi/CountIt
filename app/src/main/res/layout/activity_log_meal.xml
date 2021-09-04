@@ -33,18 +33,30 @@
         android:textSize="24sp"
         android:textStyle="bold"/>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_viewGraph"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="View Intake"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        />
+
     <TextView
         android:id="@+id/tv_todayMeals"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Today's Meals:"
+        android:text="Meals:"
         android:textAlignment="center"
         android:textSize="24sp"
         android:layout_marginTop="30dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_todayMeals"
-        android:layout_width="300sp"
+        android:layout_width="wrap_content"
         android:layout_height="200sp"
         android:layout_gravity="center" />
 

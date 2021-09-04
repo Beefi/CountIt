@@ -1,6 +1,7 @@
 package ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class User implements Serializable {
     private String uid = "";
@@ -10,6 +11,16 @@ public class User implements Serializable {
     private String email = "";
     private int id = -1;
     private int weight = -1;
+    private ArrayList<Date> foodIntake;
+    private ArrayList<Date> exercises;
+
+    public ArrayList<Date> getFoodIntake() {
+        return foodIntake;
+    }
+
+    public void setFoodIntake(ArrayList<Date> foodIntake) {
+        this.foodIntake = foodIntake;
+    }
 
     public User() {
 
@@ -22,6 +33,7 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
         this.weight = weight;
+        this.foodIntake = new ArrayList<>();
     }
 
     public String getUid() {
