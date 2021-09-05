@@ -10,7 +10,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
+import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Exercise;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Food;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 
@@ -61,7 +65,46 @@ public class UserDAOFirebaseImpl implements UserDAO{
                     user.setUsername(data.child("username").getValue(String.class));
                     user.setPassword(data.child("password").getValue(String.class));
                     user.setWeight(data.child("weight").getValue(Integer.class));
-                    user.setIntake(data.child("Intake").getValue(ArrayList.class));
+
+                    HashMap<String, Food> foodMap;
+                    foodMap = (HashMap<String, Food>) data.child("foodIntake").getValue();
+
+                    ArrayList<Food> foodList = new ArrayList<>();
+                    Food tempFood;
+
+                    Iterator hashIterator = foodMap.entrySet().iterator();
+
+                    if (foodMap.values().size() != 0) {
+                        while (hashIterator.hasNext()) {
+                            Map.Entry mapElement = (Map.Entry) hashIterator.next();
+                            String MAP_PATH = mapElement.getKey().toString();
+
+                            tempFood = data.child("foodIntake").child(MAP_PATH).getValue(Food.class);
+                            foodList.add(tempFood);
+                        }
+
+                        user.setFoodIntake(foodList);
+                    }
+
+                    HashMap <String, Exercise> exerciseMap;
+                    exerciseMap = (HashMap<String, Exercise>) data.child("exerciseIntake").getValue();
+
+                    ArrayList<Exercise> exerciseList = new ArrayList<>();
+                    Exercise tempExercise;
+
+                    hashIterator = exerciseMap.entrySet().iterator();
+
+                    if (exerciseMap.values().size() != 0) {
+                        while (hashIterator.hasNext()) {
+                            Map.Entry mapElement = (Map.Entry) hashIterator.next();
+                            String MAP_PATH = mapElement.getKey().toString();
+
+                            tempExercise = data.child("exerciseIntake").child(MAP_PATH).getValue(Exercise.class);
+                            exerciseList.add(tempExercise);
+                        }
+
+                        user.setExerciseIntake(exerciseList);
+                    }
 
                     userArrayList.add(user);
                 }
@@ -97,7 +140,25 @@ public class UserDAOFirebaseImpl implements UserDAO{
     @Override
     public long addFood(String uID, Food food) {
         final long[] result = {-1};
-        myRef.child(uID).child("intake").child("0").child("foodList").push().setValue(food, new DatabaseReference.CompletionListener() {
+        myRef.child(uID).child("foodIntake").push().setValue(food, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError error, DatabaseReference ref) {
+                if (error != null) {
+                    Log.d("ERROR", "ERROR: " + error.getMessage());
+                }
+                else {
+                    Log.d("SUCCESS", "DATA INSERTED");
+                    result[0] = 1L;
+                }
+            }
+        });
+        return result[0];
+    }
+
+    @Override
+    public long addExercise(String uID, Exercise exercise) {
+        final long[] result = {-1};
+        myRef.child(uID).child("exerciseIntake").push().setValue(exercise, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError error, DatabaseReference ref) {
                 if (error != null) {

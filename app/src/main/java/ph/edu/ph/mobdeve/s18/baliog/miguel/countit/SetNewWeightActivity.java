@@ -13,6 +13,7 @@ import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 public class SetNewWeightActivity extends AppCompatActivity {
 
     private ActivitySetNewWeightBinding binding;
+    private User curUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class SetNewWeightActivity extends AppCompatActivity {
     private void init() {
         UserDAO userDAO = new UserDAOFirebaseImpl(getApplicationContext());
         Intent intent = getIntent();
-        User curUser = (User) intent.getExtras().getSerializable("data");
+        curUser = (User) intent.getExtras().getSerializable("data");
 
         binding.tvCurrentWeight.setText(new StringBuilder().append(curUser.getWeight()).append(" lbs").toString());
 

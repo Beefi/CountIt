@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.adapter.FoodAdapter;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.databinding.ActivityLogMealBinding;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Food;
+import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 
 public class LogMealActivity extends AppCompatActivity {
 
     private ActivityLogMealBinding binding;
     private ArrayList<Food> foodList;
     private FoodAdapter foodAdapter;
+    private User curUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,14 @@ public class LogMealActivity extends AppCompatActivity {
 
     private void init() {
         Intent intent = getIntent();
+        curUser = (User) intent.getExtras().getSerializable("data");
+
+        int calorieIntake = 0;
+        for (int i = 0; i < curUser.getFoodIntake().size(); i++) {
+            calorieIntake += curUser.getFoodIntake().get(i).getFood_calories();
+        }
+
+        binding.tvCalorieIntakeToday.setText(new StringBuilder().append(calorieIntake).append(" calories").toString());
 
         foodList = new ArrayList<>();
 
@@ -39,7 +49,7 @@ public class LogMealActivity extends AppCompatActivity {
         foodList.add(new Food("URI_TEST", "Meatlovers Pizza", "Shakey's Pizza", "1 slice", 300, 5));
         foodList.add(new Food("URI_TEST", "Cheese Pizza", "Shakey's Pizza", "1 pie", 1500, 6));
 
-        foodAdapter = new FoodAdapter(getApplicationContext(), foodList, intent);
+        foodAdapter = new FoodAdapter(getApplicationContext(), foodList, intent, binding.tvCalorieIntakeToday, curUser);
 
         binding.rvTodayMeals.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -48,6 +58,13 @@ public class LogMealActivity extends AppCompatActivity {
         binding.btnFinishLogMeal.setOnClickListener(v -> {
             setResult(RESULT_OK);
             finish();
+        });
+
+        binding.btnViewGraph.setOnClickListener(v -> {
+            Intent viewGraphIntent = new Intent(this, ViewIntakeActivity.class);
+            viewGraphIntent.putExtra("data", curUser);
+
+            startActivity(viewGraphIntent);
         });
     }
 }

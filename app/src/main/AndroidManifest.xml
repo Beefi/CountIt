@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CountIt">
-        <activity android:name=".SetGoalsActivity"></activity>
+        <activity android:name=".ViewIntakeActivity"/>
+        <activity android:name=".SetGoalsActivity" />
         <activity android:name=".LogActivityActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SplashScreenActivity">
@@ -23,4 +24,5 @@
         <activity android:name=".SetNewWeightActivity" />
         <activity android:name=".MainActivity" />
     </application>
+
 </manifest>

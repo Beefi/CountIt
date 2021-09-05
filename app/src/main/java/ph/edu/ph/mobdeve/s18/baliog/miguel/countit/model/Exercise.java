@@ -4,19 +4,25 @@ import java.io.Serializable;
 
 public class Exercise implements Serializable {
     private String ex_name = "";
-    private int cal_burnt = -1;
-    private int ex_hours = -1;
+    private double cal_burnt = -1;
+    private String dateTaken = "";
 
     public Exercise() {
         this.ex_name = "";
         this.cal_burnt = -1;
-        this.ex_hours = -1;
+        this.dateTaken = "";
     }
 
-    public Exercise(String ex_name, int cal_burnt, int ex_hours) {
+    public Exercise(String ex_name, double cal_burnt) {
         this.ex_name = ex_name;
         this.cal_burnt = cal_burnt;
-        this.ex_hours = ex_hours;
+        this.dateTaken = "";
+    }
+
+    public Exercise(String ex_name, double cal_burnt, String dateTaken) {
+        this.ex_name = ex_name;
+        this.cal_burnt = cal_burnt;
+        this.dateTaken = dateTaken;
     }
 
     public String getEx_name() {
@@ -27,19 +33,19 @@ public class Exercise implements Serializable {
         this.ex_name = ex_name;
     }
 
-    public int getCal_burnt() {
+    public double getCal_burnt() {
         return cal_burnt;
     }
 
-    public void setCal_burnt(int cal_burnt) {
+    public void setCal_burnt(double cal_burnt) {
         this.cal_burnt = cal_burnt;
     }
 
-    public int getEx_hours() {
-        return ex_hours;
+    public String getDateTaken() {
+        return dateTaken;
     }
 
-    public void setEx_hours(int ex_hours) {
-        this.ex_hours = ex_hours;
+    public void setDateTaken(String dateTaken) {
+        this.dateTaken = dateTaken;
     }
 }

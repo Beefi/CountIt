@@ -9,6 +9,7 @@ public class Food implements Serializable {
     private String food_weight = "";
     private int food_calories = -1;
     private int food_id = -1;
+    private String dateTaken = "";
 
     public Food() {
         this.food_uri = "";
@@ -17,6 +18,7 @@ public class Food implements Serializable {
         this.food_weight = "";
         this.food_calories = -1;
         this.food_id = -1;
+        this.dateTaken = "";
     }
 
     public Food(String food_uri, String food_name, String food_location, String food_weight, int food_calories, int food_id) {
@@ -26,6 +28,17 @@ public class Food implements Serializable {
         this.food_weight = food_weight;
         this.food_calories = food_calories;
         this.food_id = food_id;
+        this.dateTaken = "";
+    }
+
+    public Food(String food_uri, String food_name, String food_location, String food_weight, int food_calories, int food_id, String dateTaken) {
+        this.food_uri = food_uri;
+        this.food_name = food_name;
+        this.food_location = food_location;
+        this.food_weight = food_weight;
+        this.food_calories = food_calories;
+        this.food_id = food_id;
+        this.dateTaken = dateTaken;
     }
 
     public String getFood_uri() {
@@ -74,5 +87,13 @@ public class Food implements Serializable {
 
     public void setFood_id(int food_id) {
         this.food_id = food_id;
+    }
+
+    public String getDateTaken() {
+        return dateTaken;
+    }
+
+    public void setDateTaken(String dateTaken) {
+        this.dateTaken = dateTaken;
     }
 }

@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     public ActivityMainBinding binding;
     public int NEW_WEIGHT_ACTIVITY = 100;
+    public User curUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = intent.getBundleExtra("bundle");
         ArrayList<User> userArrayList = (ArrayList<User>) bundle.getSerializable("userList");
         int userNum = intent.getIntExtra("userNum", 0);
-        User curUser = userArrayList.get(userNum);
+        curUser = userArrayList.get(userNum);
 
         binding.tvName.setText(curUser.getName());
-        binding.tvWeight.setText(new StringBuilder().append(curUser.getWeight()).append(" lbs").toString());
+        binding.tvWeight.setText(new StringBuilder().append(this.curUser.getWeight()).append(" lbs").toString());
 
         binding.btnSetWeight.setOnClickListener(v -> {
             Intent intentSetWeight = new Intent(this, SetNewWeightActivity.class);
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.btnLogActivity.setOnClickListener(v -> {
-            Intent intentLogActivity = new Intent(this, LogMealActivity.class);
+            Intent intentLogActivity = new Intent(this, LogActivityActivity.class);
             intentLogActivity.putExtra("data", curUser);
 
             startActivity(intentLogActivity);
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.btnSetGoals.setOnClickListener(v -> {
             // TO DO
-            Intent intentSetGoals = new Intent(this, SetNewWeightActivity.class);
+            Intent intentSetGoals = new Intent(this, SetGoalsActivity.class);
             intentSetGoals.putExtra("data", curUser);
 
             startActivity(intentSetGoals);
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == NEW_WEIGHT_ACTIVITY)   {
             if (resultCode == RESULT_OK) {
                 binding.tvWeight.setText(new StringBuilder().append(data.getStringExtra("weight")).append(" lbs").toString());
+                curUser.setWeight(Integer.parseInt(data.getStringExtra("weight")));
             }
         }
     }

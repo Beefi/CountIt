@@ -22,7 +22,7 @@
         android:text="Calories Burnt:"
         android:textAlignment="center"
         android:textSize="24sp"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/tv_caloriesBurnt"
@@ -32,6 +32,18 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_viewGraph"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="View Intake"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:id="@+id/tv_activitiesLabel"
@@ -44,21 +56,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_activities"
-        android:layout_width="300sp"
-        android:layout_height="200sp"
-        android:layout_gravity="center" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_logActivity"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:text="Log"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="300sp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginTop="20dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_finishLogActivity"
@@ -69,6 +70,7 @@
         android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         />
 
 </LinearLayout>

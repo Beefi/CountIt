@@ -11,15 +11,8 @@ public class User implements Serializable {
     private String email = "";
     private int id = -1;
     private int weight = -1;
-    private ArrayList<Date> Intake;
-
-    public ArrayList<Date> getIntake() {
-        return Intake;
-    }
-
-    public void setIntake(ArrayList<Date> Intake) {
-        this.Intake = Intake;
-    }
+    private ArrayList<Food> foodIntake;
+    private ArrayList<Exercise> exerciseIntake;
 
     public User() {
 
@@ -32,7 +25,8 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
         this.weight = weight;
-        this.Intake = new ArrayList<>();
+        this.foodIntake = new ArrayList<>();
+        this.exerciseIntake = new ArrayList<>();
     }
 
     public String getUid() {
@@ -89,6 +83,22 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ArrayList<Food> getFoodIntake() {
+        return foodIntake;
+    }
+
+    public void setFoodIntake(ArrayList<Food> foodIntake) {
+        this.foodIntake = foodIntake;
+    }
+
+    public ArrayList<Exercise> getExerciseIntake() {
+        return exerciseIntake;
+    }
+
+    public void setExerciseIntake(ArrayList<Exercise> exerciseIntake) {
+        this.exerciseIntake = exerciseIntake;
     }
 }
 
