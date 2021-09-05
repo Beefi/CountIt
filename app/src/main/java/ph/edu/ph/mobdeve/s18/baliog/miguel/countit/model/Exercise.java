@@ -3,26 +3,26 @@ package ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model;
 import java.io.Serializable;
 
 public class Exercise implements Serializable {
+    private String dateTaken = "";
     private String ex_name = "";
     private double cal_burnt = -1;
-    private String dateTaken = "";
 
     public Exercise() {
+        this.dateTaken = "";
         this.ex_name = "";
         this.cal_burnt = -1;
-        this.dateTaken = "";
     }
 
     public Exercise(String ex_name, double cal_burnt) {
+        this.dateTaken = "";
         this.ex_name = ex_name;
         this.cal_burnt = cal_burnt;
-        this.dateTaken = "";
     }
 
-    public Exercise(String ex_name, double cal_burnt, String dateTaken) {
+    public Exercise(String dateTaken, String ex_name, double cal_burnt) {
+        this.dateTaken = dateTaken;
         this.ex_name = ex_name;
         this.cal_burnt = cal_burnt;
-        this.dateTaken = dateTaken;
     }
 
     public String getEx_name() {

@@ -15,6 +15,7 @@ import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 public class SplashScreenActivity extends AppCompatActivity {
 
     private ActivitySplashScreenBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

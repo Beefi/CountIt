@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
             ArrayList<Exercise> exerciseList = new ArrayList<>();
             exerciseList.add(new Exercise());
 
-            user.getFoodIntake().add(new Food());
+            user.getFoodIntake().add(new Food("","","","","",-1,-1));
             user.getExerciseIntake().add(new Exercise());
 
             if (verifyEmail(email, userArrayList)) {

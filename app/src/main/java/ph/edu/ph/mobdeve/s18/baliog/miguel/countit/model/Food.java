@@ -1,44 +1,45 @@
 package ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
-public class Food implements Serializable {
+public class Food extends HashMap<String, Food> implements Serializable {
+    private String dateTaken = "";
     private String food_uri = "";
     private String food_name = "";
     private String food_location = "";
     private String food_weight = "";
     private int food_calories = -1;
     private int food_id = -1;
-    private String dateTaken = "";
 
     public Food() {
+        this.dateTaken = "";
         this.food_uri = "";
         this.food_name = "";
         this.food_location = "";
         this.food_weight = "";
         this.food_calories = -1;
         this.food_id = -1;
-        this.dateTaken = "";
     }
 
     public Food(String food_uri, String food_name, String food_location, String food_weight, int food_calories, int food_id) {
+        this.dateTaken = "";
         this.food_uri = food_uri;
         this.food_name = food_name;
         this.food_location = food_location;
         this.food_weight = food_weight;
         this.food_calories = food_calories;
         this.food_id = food_id;
-        this.dateTaken = "";
     }
 
-    public Food(String food_uri, String food_name, String food_location, String food_weight, int food_calories, int food_id, String dateTaken) {
+    public Food(String dateTaken, String food_uri, String food_name, String food_location, String food_weight, int food_calories, int food_id) {
+        this.dateTaken = dateTaken;
         this.food_uri = food_uri;
         this.food_name = food_name;
         this.food_location = food_location;
         this.food_weight = food_weight;
         this.food_calories = food_calories;
         this.food_id = food_id;
-        this.dateTaken = dateTaken;
     }
 
     public String getFood_uri() {

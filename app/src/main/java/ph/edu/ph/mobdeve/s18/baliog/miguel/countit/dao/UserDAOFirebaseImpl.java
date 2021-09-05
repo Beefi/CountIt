@@ -10,9 +10,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Exercise;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Food;
@@ -23,10 +20,6 @@ public class UserDAOFirebaseImpl implements UserDAO{
     private final String PATH = "users";
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference(PATH);
-
-    public UserDAOFirebaseImpl() {
-
-    }
 
     public UserDAOFirebaseImpl(Context context0) {
 
@@ -66,47 +59,120 @@ public class UserDAOFirebaseImpl implements UserDAO{
                     user.setPassword(data.child("password").getValue(String.class));
                     user.setWeight(data.child("weight").getValue(Integer.class));
 
-                    HashMap<String, Food> foodMap;
-                    foodMap = (HashMap<String, Food>) data.child("foodIntake").getValue();
+//                    ArrayList<Food> foodList = new ArrayList<>();
+//                    ArrayList<Exercise> exerciseList = new ArrayList<>();
+//
+//                    ArrayList<Food> tempFoodList = new ArrayList<>();
+//                    ArrayList<Exercise> tempExerciseList = new ArrayList<>();
+//                    tempFoodList = (ArrayList<Food>) data.child("foodIntake").getValue();
+//                    tempExerciseList = (ArrayList<Exercise>) data.child("exerciseIntake").getValue();
+//
+//                    Food tempFood;
+//                    Exercise tempExercise;
+//
+//                    for (int i = 0; i < tempFoodList.size(); i++) {
+//                        tempFood = tempFoodList.get(i);
+//                        foodList.add(tempFood);
+//                    }
+//
+//                    for (int i = 0; i < tempFoodList.size(); i++) {
+//                        tempExercise = tempExerciseList.get(i);
+//                        exerciseList.add(tempExercise);
+//                    }
+//
+//                    user.setFoodIntake(foodList);
+//                    user.setExerciseIntake(exerciseList);
+//
+//                    userArrayList.add(user);
 
-                    ArrayList<Food> foodList = new ArrayList<>();
-                    Food tempFood;
+//                    HashMap<String, Food> foodMap = new HashMap<>();
+//
+//                    ArrayList<Food> tempFoodList = (ArrayList<Food>) data.child("foodIntake").getValue();
+//
+//                    for (int i = 0; i < tempFoodList.size(); i++) {
+//                        foodMap = tempFoodList.get(i);
+//                    }
+//
+//                    ArrayList<Food> foodList = new ArrayList<>();
+//                    Food tempFood;
+//
+//                    Iterator hashIterator = foodMap.entrySet().iterator();
+//
+//                    if (foodMap.values().size() != 0) {
+//                        while (hashIterator.hasNext()) {
+//                            Map.Entry mapElement = (Map.Entry) hashIterator.next();
+//                            String MAP_PATH = mapElement.getKey().toString();
+//
+//                            tempFood = data.child("foodIntake").child(MAP_PATH).getValue(Food.class);
+//                            foodList.add(tempFood);
+//                        }
+//
+//                        user.setFoodIntake(foodList);
+//                    }
+//
+//                    HashMap <String, Exercise> exerciseMap;
+//                    exerciseMap = (HashMap<String, Exercise>) data.child("exerciseIntake").getValue();
+//
+//                    ArrayList<Exercise> exerciseList = new ArrayList<>();
+//                    Exercise tempExercise;
+//
+//                    hashIterator = exerciseMap.entrySet().iterator();
+//
+//                    if (exerciseMap.values().size() != 0) {
+//                        while (hashIterator.hasNext()) {
+//                            Map.Entry mapElement = (Map.Entry) hashIterator.next();
+//                            String MAP_PATH = mapElement.getKey().toString();
+//
+//                            tempExercise = data.child("exerciseIntake").child(MAP_PATH).getValue(Exercise.class);
+//                            exerciseList.add(tempExercise);
+//                        }
+//
+//                        user.setExerciseIntake(exerciseList);
+//                    }
+//
+//                    userArrayList.add(user);
 
-                    Iterator hashIterator = foodMap.entrySet().iterator();
-
-                    if (foodMap.values().size() != 0) {
-                        while (hashIterator.hasNext()) {
-                            Map.Entry mapElement = (Map.Entry) hashIterator.next();
-                            String MAP_PATH = mapElement.getKey().toString();
-
-                            tempFood = data.child("foodIntake").child(MAP_PATH).getValue(Food.class);
-                            foodList.add(tempFood);
-                        }
-
-                        user.setFoodIntake(foodList);
-                    }
-
-                    HashMap <String, Exercise> exerciseMap;
-                    exerciseMap = (HashMap<String, Exercise>) data.child("exerciseIntake").getValue();
-
-                    ArrayList<Exercise> exerciseList = new ArrayList<>();
-                    Exercise tempExercise;
-
-                    hashIterator = exerciseMap.entrySet().iterator();
-
-                    if (exerciseMap.values().size() != 0) {
-                        while (hashIterator.hasNext()) {
-                            Map.Entry mapElement = (Map.Entry) hashIterator.next();
-                            String MAP_PATH = mapElement.getKey().toString();
-
-                            tempExercise = data.child("exerciseIntake").child(MAP_PATH).getValue(Exercise.class);
-                            exerciseList.add(tempExercise);
-                        }
-
-                        user.setExerciseIntake(exerciseList);
-                    }
-
-                    userArrayList.add(user);
+//                    HashMap<String, Food> foodMap;
+//                    foodMap = (HashMap<String, Food>) data.child("foodIntake").getValue();
+//
+//                    ArrayList<Food> foodList = new ArrayList<>();
+//                    Food tempFood;
+//
+//                    Iterator hashIterator = foodMap.entrySet().iterator();
+//
+//                    if (foodMap.values().size() != 0) {
+//                        while (hashIterator.hasNext()) {
+//                            Map.Entry mapElement = (Map.Entry) hashIterator.next();
+//                            String MAP_PATH = mapElement.getKey().toString();
+//
+//                            tempFood = data.child("foodIntake").child(MAP_PATH).getValue(Food.class);
+//                            foodList.add(tempFood);
+//                        }
+//
+//                        user.setFoodIntake(foodList);
+//                    }
+//
+//                    HashMap <String, Exercise> exerciseMap;
+//                    exerciseMap = (HashMap<String, Exercise>) data.child("exerciseIntake").getValue();
+//
+//                    ArrayList<Exercise> exerciseList = new ArrayList<>();
+//                    Exercise tempExercise;
+//
+//                    hashIterator = exerciseMap.entrySet().iterator();
+//
+//                    if (exerciseMap.values().size() != 0) {
+//                        while (hashIterator.hasNext()) {
+//                            Map.Entry mapElement = (Map.Entry) hashIterator.next();
+//                            String MAP_PATH = mapElement.getKey().toString();
+//
+//                            tempExercise = data.child("exerciseIntake").child(MAP_PATH).getValue(Exercise.class);
+//                            exerciseList.add(tempExercise);
+//                        }
+//
+//                        user.setExerciseIntake(exerciseList);
+//                    }
+//
+//                    userArrayList.add(user);
                 }
             }
 
