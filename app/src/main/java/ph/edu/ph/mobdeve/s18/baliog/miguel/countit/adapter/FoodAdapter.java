@@ -85,7 +85,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                     food.setFood_weight(holder.tv_foodWeight.getText().toString());
                     food.setFood_calories(foodCalories);
 
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
                     LocalDateTime now = LocalDateTime.now();
                     String timeStamp = dtf.format(now);
 

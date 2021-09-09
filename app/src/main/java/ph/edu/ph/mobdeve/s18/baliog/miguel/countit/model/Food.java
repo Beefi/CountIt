@@ -1,9 +1,8 @@
 package ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model;
 
 import java.io.Serializable;
-import java.util.HashMap;
 
-public class Food extends HashMap<String, Food> implements Serializable {
+public class Food implements Serializable {
     private String dateTaken = "";
     private String food_uri = "";
     private String food_name = "";
@@ -18,7 +17,7 @@ public class Food extends HashMap<String, Food> implements Serializable {
         this.food_name = "";
         this.food_location = "";
         this.food_weight = "";
-        this.food_calories = -1;
+        this.food_calories = 0;
         this.food_id = -1;
     }
 

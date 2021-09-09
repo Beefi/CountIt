@@ -9,49 +9,18 @@
 
     <TextView
         android:id="@+id/tv_currentDate"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Date"
         android:textSize="20sp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChart"
         android:layout_width="match_parent"
         android:layout_height="500dp"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        >
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_previousDay"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Previous\n Activity"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textAllCaps="false"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_nextDay"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Next\n Activity"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textAllCaps="false"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            />
-    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_finishView"

@@ -1,9 +1,14 @@
 package ph.edu.ph.mobdeve.s18.baliog.miguel.countit;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.data.PieData;
@@ -11,17 +16,25 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.databinding.ActivityViewIntakeBinding;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Exercise;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Food;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 
+import static android.content.ContentValues.TAG;
+
 public class ViewIntakeActivity extends AppCompatActivity {
 
     private ActivityViewIntakeBinding binding;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private ArrayList<PieEntry> intakeData = new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,55 +44,69 @@ public class ViewIntakeActivity extends AppCompatActivity {
         init();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected void init() {
         Intent intent = getIntent();
         User curUser = (User) intent.getExtras().getSerializable("data");
         ArrayList<Food> foodIntake = curUser.getFoodIntake();
         ArrayList<Exercise> exerciseIntake = curUser.getExerciseIntake();
-        ArrayList<PieEntry> intakeData = new ArrayList<>();
 
-        String[][] dates = new String[2][]; // 0 - FOOD DATES | 1 - EXERCISE DATES
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        String timeStamp = dtf.format(now);
 
+        binding.tvCurrentDate.setText(timeStamp);
+
+        loadIntakeData(foodIntake, exerciseIntake, timeStamp);
+
+        binding.btnFinishView.setOnClickListener(v -> {
+            setResult(RESULT_OK);
+            finish();
+        });
+
+        binding.tvCurrentDate.setOnClickListener(v -> {
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog dialog = new DatePickerDialog(ViewIntakeActivity.this,
+                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                    mDateSetListener,
+                    year,month,day);
+
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+        });
+
+        mDateSetListener = (view, year, month, day) -> {
+            Log.d(TAG, "onDateSet: date: " + month + "/" + day + "/" + year);
+
+            month++;
+            String date = month + "/" + day + "/" + year;
+            binding.tvCurrentDate.setText(date);
+
+            intakeData.clear();
+            binding.pieChart.invalidate();
+            binding.pieChart.clear();
+
+            loadIntakeData(foodIntake, exerciseIntake, date);
+        };
+    }
+    
+    protected void loadIntakeData(ArrayList<Food> foodIntake, ArrayList<Exercise> exerciseIntake, String date) {
         int foodSum = 0;
         double exerciseSum = 0;
 
         if (exerciseIntake != null || foodIntake != null) {
-            // Initialize Dates for Food
             for (int i = 0; i < foodIntake.size(); i++) {
-                dates[0][i] = foodIntake.get(i).getDateTaken();
+                if (foodIntake.get(i).getDateTaken().equals(date))
+                    foodSum += foodIntake.get(i).getFood_calories();
             }
 
-            // Initialize Dates for Exercise
             for (int i = 0; i < exerciseIntake.size(); i++) {
-                dates[1][i] = exerciseIntake.get(i).getDateTaken();
-            }
-
-            ArrayList<Food>[] sortedFood = new ArrayList[dates[0].length];
-            for (int i = 0; i < foodIntake.size(); i++) {
-                for (int x = 0; x < dates[0].length; x++) {
-                    if (foodIntake.get(i).getDateTaken().equals(dates[0][x])) {
-                        sortedFood[x].add(foodIntake.get(i));
-                    }
-                }
-            }
-
-            ArrayList<Exercise>[] sortedExercise = new ArrayList[dates[1].length];
-            for (int i = 0; i < exerciseIntake.size(); i++) {
-                for (int x = 0; x < dates[0].length; x++) {
-                    if (exerciseIntake.get(i).getDateTaken().equals(dates[1][x])) {
-                        sortedExercise[x].add(exerciseIntake.get(i));
-                    }
-                }
-            }
-
-            binding.tvCurrentDate.setText(sortedFood[0].get(0).getDateTaken());
-
-            for (int i = 0; i < sortedFood[0].size(); i++) {
-                foodSum += sortedFood[0].get(i).getFood_calories();
-            }
-
-            for (int i = 0; i < sortedExercise[0].size(); i++) {
-                exerciseSum += sortedExercise[0].get(i).getCal_burnt();
+                if (exerciseIntake.get(i).getDateTaken().equals(date))
+                    exerciseSum += exerciseIntake.get(i).getCal_burnt();
             }
 
             intakeData.add(new PieEntry(foodSum, "Eaten"));
@@ -97,10 +124,5 @@ public class ViewIntakeActivity extends AppCompatActivity {
             binding.pieChart.setCenterText("Calories");
             binding.pieChart.animate();
         }
-
-        binding.btnFinishView.setOnClickListener(v -> {
-            setResult(RESULT_OK);
-            finish();
-        });
     }
 }

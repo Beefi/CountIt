@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.dao.UserDAO;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.dao.UserDAOFirebaseImpl;
@@ -15,6 +16,7 @@ import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.databinding.ActivityRegisterB
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Exercise;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.Food;
 import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
+import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User_DB;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -52,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         binding.btnRegister.setOnClickListener(v -> {
-            User user = new User();
+            User_DB user = new User_DB();
             user.setEmail(binding.etEmail.getText().toString());
             user.setName(binding.etScreenName.getText().toString());
             user.setPassword(binding.etPassword.getText().toString());
@@ -65,21 +67,15 @@ public class RegisterActivity extends AppCompatActivity {
             int numUsers = userArrayList.size();
 
             user.setId(numUsers+1);
-            user.setFoodIntake(new ArrayList<>());
-            user.setExerciseIntake(new ArrayList<>());
+            user.setFoodIntake(new HashMap<>());
+            user.setExerciseIntake(new HashMap<>());
 
-            ArrayList<Food> foodList = new ArrayList<>();
-            foodList.add(new Food());
-
-            ArrayList<Exercise> exerciseList = new ArrayList<>();
-            exerciseList.add(new Exercise());
-
-            user.getFoodIntake().add(new Food("","","","","",-1,-1));
-            user.getExerciseIntake().add(new Exercise());
+            user.getFoodIntake().put("id_0", new Food());
+            user.getExerciseIntake().put("id_0", new Exercise());
 
             if (verifyEmail(email, userArrayList)) {
                 if (verifyUsername(username, userArrayList)) {
-                    userDAO.addUser(user);
+                    userDAO.addUser_DB(user);
 
                     finishAndRemoveTask();
                 }

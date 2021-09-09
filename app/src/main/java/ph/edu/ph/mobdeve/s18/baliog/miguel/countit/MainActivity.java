@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     public ActivityMainBinding binding;
     public int NEW_WEIGHT_ACTIVITY = 100;
+    public int NEW_GOAL_ACTIVITY = 200;
     public User curUser;
 
     @Override
@@ -62,11 +63,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.btnSetGoals.setOnClickListener(v -> {
-            // TO DO
             Intent intentSetGoals = new Intent(this, SetGoalsActivity.class);
             intentSetGoals.putExtra("data", curUser);
 
-            startActivity(intentSetGoals);
+            startActivityForResult(intentSetGoals, NEW_GOAL_ACTIVITY);
         });
     }
 
@@ -79,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 binding.tvWeight.setText(new StringBuilder().append(data.getStringExtra("weight")).append(" lbs").toString());
                 curUser.setWeight(Integer.parseInt(data.getStringExtra("weight")));
+            }
+        }
+        else if (requestCode == NEW_GOAL_ACTIVITY) {
+            if (resultCode == RESULT_OK) {
+                curUser.setWeightGoal(Integer.parseInt(data.getStringExtra("weightGoal")));
             }
         }
     }

@@ -8,14 +8,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_appName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log Meal"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
-    <TextView
         android:id="@+id/tv_calorieIntakeTodayLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

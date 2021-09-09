@@ -1,9 +1,9 @@
 package ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
 
-public class User implements Serializable {
+public class User_DB implements Serializable {
     private String uid = "";
     private String username = "";
     private String password = "";
@@ -12,14 +12,14 @@ public class User implements Serializable {
     private int id = -1;
     private int weight = 0;
     private int weightGoal = 0;
-    private ArrayList<Food> foodIntake = new ArrayList<Food>();
-    private ArrayList<Exercise> exerciseIntake = new ArrayList<Exercise>();
+    private HashMap<String, Food> foodIntake = new HashMap<String, Food>();
+    private HashMap<String, Exercise> exerciseIntake = new HashMap<String, Exercise>();
 
-    public User() {
+    public User_DB() {
 
     }
 
-    public User(String username, String password, String name, String email, int id, int weight, int weightGoal) {
+    public User_DB(String username, String password, String name, String email, int id, int weight, int weightGoal) {
         this.username = username;
         this.password = password;
         this.id = id;
@@ -27,8 +27,8 @@ public class User implements Serializable {
         this.email = email;
         this.weight = weight;
         this.weightGoal = weightGoal;
-        this.foodIntake = new ArrayList<>();
-        this.exerciseIntake = new ArrayList<>();
+        this.foodIntake = new HashMap<String, Food>();
+        this.exerciseIntake = new HashMap<String, Exercise>();
     }
 
     public String getUid() {
@@ -95,20 +95,19 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public ArrayList<Food> getFoodIntake() {
+    public HashMap<String, Food> getFoodIntake() {
         return foodIntake;
     }
 
-    public void setFoodIntake(ArrayList<Food> foodIntake) {
+    public void setFoodIntake(HashMap<String, Food> foodIntake) {
         this.foodIntake = foodIntake;
     }
 
-    public ArrayList<Exercise> getExerciseIntake() {
+    public HashMap<String, Exercise> getExerciseIntake() {
         return exerciseIntake;
     }
 
-    public void setExerciseIntake(ArrayList<Exercise> exerciseIntake) {
+    public void setExerciseIntake(HashMap<String, Exercise> exerciseIntake) {
         this.exerciseIntake = exerciseIntake;
     }
 }
-

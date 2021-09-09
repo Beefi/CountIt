@@ -8,14 +8,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_appName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Set Goals"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
-    <TextView
         android:id="@+id/tv_currentGoalLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,6 +43,24 @@
         android:textSize="24sp"
         android:textStyle="bold"/>
 
+    <TextView
+        android:id="@+id/tv_newWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Goal:"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"/>
+
+    <EditText
+        android:id="@+id/et_newWeight"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:hint="Weight (in lbs)"
+        android:singleLine="true" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_setWeightGoal"
         android:layout_width="250sp"
@@ -60,7 +70,7 @@
         android:textSize="20sp"
         android:textAllCaps="false"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton

@@ -77,7 +77,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
                     exercise.setCal_burnt(exerciseCalories);
                     exercise.setEx_name(holder.tv_exerciseTitle.getText().toString());
 
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/d/yyyy");
                     LocalDateTime now = LocalDateTime.now();
                     String timeStamp = dtf.format(now);
 
