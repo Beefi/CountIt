@@ -3,12 +3,10 @@ package ph.edu.ph.mobdeve.s18.baliog.miguel.countit.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -27,16 +25,17 @@ import ph.edu.ph.mobdeve.s18.baliog.miguel.countit.model.User;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
-    private ArrayList<Food> foodList = new ArrayList<>();
+    private final int limit = 10;
+    private ArrayList<Food> foodList;
     private Context context;
-    private Intent intent;
     private TextView tvCalorieIntakeToday;
     private User curUser;
+    private String food_uri;
 
-    public FoodAdapter(Context context, ArrayList<Food> foodArrayList, Intent intent, TextView tvCalorieIntakeToday, User curUser) {
+    public FoodAdapter(Context context, ArrayList<Food> foodArrayList, TextView tvCalorieIntakeToday, User curUser) {
+        this.foodList = new ArrayList<>();
         this.foodList = foodArrayList;
         this.context = context;
-        this.intent = intent;
         this.tvCalorieIntakeToday = tvCalorieIntakeToday;
         this.curUser = curUser;
     }
@@ -55,12 +54,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         ArrayList<User> userArrayList = new ArrayList<>();
         userDAO.getUsers(userArrayList);
 
-        holder.iv_foodPicture.setImageResource(R.drawable.sample);
         holder.tv_foodTitle.setText(this.foodList.get(position).getFood_name());
         holder.tv_foodFrom.setText(this.foodList.get(position).getFood_location());
         holder.tv_foodWeight.setText(this.foodList.get(position).getFood_weight());
 
-        int foodCalories = this.foodList.get(position).getFood_calories();
+        food_uri = this.foodList.get(position).getFood_uri();
+
+        double foodCalories = this.foodList.get(position).getFood_calories();
 
         holder.tv_foodCalories.setText(new StringBuilder().append(foodCalories).append(" cal").toString());
 
@@ -79,7 +79,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Food food = new Food();
-                    food.setFood_uri(holder.iv_foodPicture.getDrawable().toString());
+                    food.setFood_uri(food_uri);
                     food.setFood_name(holder.tv_foodTitle.getText().toString());
                     food.setFood_location(holder.tv_foodFrom.getText().toString());
                     food.setFood_weight(holder.tv_foodWeight.getText().toString());
@@ -121,17 +121,26 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     @Override
     public int getItemCount() {
-        return this.foodList.size();
+        if (this.foodList.size() > limit) {
+            return limit;
+        }
+        else {
+            return this.foodList.size();
+        }
+    }
+
+    public void setData(ArrayList<Food> foodList){
+        this.foodList.clear();
+        this.foodList.addAll(foodList);
+        notifyDataSetChanged();
     }
 
     protected class FoodViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_foodPicture;
         TextView tv_foodTitle, tv_foodFrom, tv_foodWeight, tv_foodCalories;
         CardView food_card;
 
         public FoodViewHolder(View view) {
             super(view);
-            iv_foodPicture = view.findViewById(R.id.iv_foodPicture);
             tv_foodTitle = view.findViewById(R.id.tv_foodTitle);
             tv_foodFrom = view.findViewById(R.id.tv_foodFrom);
             tv_foodWeight = view.findViewById(R.id.tv_foodWeight);

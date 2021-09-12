@@ -8,8 +8,7 @@ public class Food implements Serializable {
     private String food_name = "";
     private String food_location = "";
     private String food_weight = "";
-    private int food_calories = -1;
-    private int food_id = -1;
+    private double food_calories = -1;
 
     public Food() {
         this.dateTaken = "";
@@ -18,27 +17,24 @@ public class Food implements Serializable {
         this.food_location = "";
         this.food_weight = "";
         this.food_calories = 0;
-        this.food_id = -1;
     }
 
-    public Food(String food_uri, String food_name, String food_location, String food_weight, int food_calories, int food_id) {
+    public Food(String food_uri, String food_name, String food_location, String food_weight, double food_calories) {
         this.dateTaken = "";
         this.food_uri = food_uri;
         this.food_name = food_name;
         this.food_location = food_location;
         this.food_weight = food_weight;
         this.food_calories = food_calories;
-        this.food_id = food_id;
     }
 
-    public Food(String dateTaken, String food_uri, String food_name, String food_location, String food_weight, int food_calories, int food_id) {
+    public Food(String dateTaken, String food_uri, String food_name, String food_location, String food_weight, double food_calories) {
         this.dateTaken = dateTaken;
         this.food_uri = food_uri;
         this.food_name = food_name;
         this.food_location = food_location;
         this.food_weight = food_weight;
         this.food_calories = food_calories;
-        this.food_id = food_id;
     }
 
     public String getFood_uri() {
@@ -73,20 +69,12 @@ public class Food implements Serializable {
         this.food_weight = food_weight;
     }
 
-    public int getFood_calories() {
+    public double getFood_calories() {
         return food_calories;
     }
 
-    public void setFood_calories(int food_calories) {
+    public void setFood_calories(double food_calories) {
         this.food_calories = food_calories;
-    }
-
-    public int getFood_id() {
-        return food_id;
-    }
-
-    public void setFood_id(int food_id) {
-        this.food_id = food_id;
     }
 
     public String getDateTaken() {

@@ -42,9 +42,14 @@ public class LogActivityActivity extends AppCompatActivity {
 
         exerciseList = new ArrayList<>();
 
-        exerciseList.add(new Exercise("Jumping Jacks", 100));
-        exerciseList.add(new Exercise("Push-ups", 50));
-        exerciseList.add(new Exercise("Weight Lifting", 30));
+        exerciseList.add(new Exercise("Jumping Jacks", 600));
+        exerciseList.add(new Exercise("Push-ups", 420));
+        exerciseList.add(new Exercise("Weight Lifting", 180));
+        exerciseList.add(new Exercise("Burpies", 600));
+        exerciseList.add(new Exercise("Walking", 210));
+        exerciseList.add(new Exercise("Squats", 194));
+        exerciseList.add(new Exercise("Jogging", 398));
+        exerciseList.add(new Exercise("Lunges", 180));
 
         exerciseAdapter = new ExerciseAdapter(getApplicationContext(), exerciseList, intent, binding.tvCaloriesBurnt, curUser);
 

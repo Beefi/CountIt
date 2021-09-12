@@ -10,15 +10,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/iv_foodPicture"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/sample"
-            android:adjustViewBounds="true"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -27,15 +21,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:textSize="14sp"
                 android:text="Margherita Pizza"
                 android:textStyle="bold"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:id="@+id/tv_foodFrom"
@@ -57,13 +52,14 @@
 
                 <TextView
                     android:id="@+id/tv_foodCalories"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp"
                     android:layout_marginTop="5dp"
-                    android:textSize="14sp"
+                    android:layout_marginRight="10dp"
                     android:text="200 calories"
-                    android:textStyle="italic"/>
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    android:gravity="right"/>
 
             </LinearLayout>
 

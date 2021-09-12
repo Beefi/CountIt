@@ -29,6 +29,14 @@ public class SetGoalsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         curUser = (User) intent.getExtras().getSerializable("data");
 
+        double weightInKG = (curUser.getWeightGoal() / 2.205);
+
+        double computation = ((weightInKG * 24) * 0.95) * 1.3;
+
+        int caloriesNeeded = (int) computation;
+
+        binding.tvRecommendedCalories.setText(new StringBuilder().append(caloriesNeeded).append(" cal").toString());
+
         binding.tvCurrentGoalWeight.setText(new StringBuilder().append(curUser.getWeightGoal()).append(" lbs").toString());
 
         binding.btnSetWeightGoal.setOnClickListener(v -> {
@@ -38,9 +46,15 @@ public class SetGoalsActivity extends AppCompatActivity {
             userDAO.updateUser(curUser.getUid(), "weightGoal", newGoal);
             curUser.setWeightGoal(Integer.parseInt(newGoal));
 
+            double post_comp = (((curUser.getWeightGoal() / 2.205) * 24) * 0.95) * 1.3;
+            int post_calories = (int) post_comp;
+
+            binding.tvCurrentGoalWeight.setText(new StringBuilder().append(curUser.getWeightGoal()).append(" lbs").toString());
+            binding.tvRecommendedCalories.setText(new StringBuilder().append(post_calories).append(" cal").toString());
+
             returnIntent.putExtra("weightGoal", newGoal);
 
-            setResult(RESULT_OK);
+            setResult(RESULT_OK, returnIntent);
             finish();
         });
 
