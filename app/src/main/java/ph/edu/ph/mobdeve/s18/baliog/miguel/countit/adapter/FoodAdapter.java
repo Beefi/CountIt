@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     @Override
     public void onBindViewHolder(FoodAdapter.FoodViewHolder holder, int position) {
+        DecimalFormat df2 = new DecimalFormat("#.##");
         UserDAO userDAO = new UserDAOFirebaseImpl(context.getApplicationContext());
         ArrayList<User> userArrayList = new ArrayList<>();
         userDAO.getUsers(userArrayList);
@@ -62,7 +64,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
         double foodCalories = this.foodList.get(position).getFood_calories();
 
-        holder.tv_foodCalories.setText(new StringBuilder().append(foodCalories).append(" cal").toString());
+        holder.tv_foodCalories.setText(new StringBuilder().append(df2.format(foodCalories)).append(" cal").toString());
 
         holder.food_card.setOnClickListener(v -> {
 

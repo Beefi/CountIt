@@ -2,6 +2,8 @@ package ph.edu.ph.mobdeve.s18.baliog.miguel.countit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +31,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         UserDAO userDAO = new UserDAOFirebaseImpl(getApplicationContext());
         ArrayList<User> userArrayList = new ArrayList<>();
         userDAO.getUsers(userArrayList);
+        Animation anim = AnimationUtils.loadAnimation(SplashScreenActivity.this, R.anim.scale);
+        binding.etPassword.startAnimation(anim);
+        binding.etUsername.startAnimation(anim);
 
         Intent intent2 = getIntent();
         binding.etUsername.setText(intent2.getStringExtra("username"));
